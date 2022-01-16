@@ -1,14 +1,27 @@
-const a = document.querySelector(".hello h1"); // CSS셀렉터를 검색하는 방법처럼
-const b = document.getElementsByClassName("hello");
+const loginForm = document.querySelector("#login-form");
+const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
 
-console.dir(a);
-a.style.color = "blue";
+const USERNAME_KEY = "username";
+const HIDDEN_CLASSNAME = "hidden";
 
-const a = document.querySelector(".hello h1");
-
-function handleTitleClick() {
-  a.innerHTML = "hello~";
+function onLoginSubmit(e) {
+  e.preventDefault();
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  const InputUserName = loginInput.value;
+  localStorage.setItem(USERNAME_KEY, InputUserName);
+  paintGreetings(InputUserName);
 }
 
-a.onclick = handleTitleClick;
-a.addEventListener("click", handleTitleClick);
+function paintGreetings(name) {
+  greeting.innerText = `Hello ~! ${name}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+const savedUserName = localStorage.getItem(USERNAME_KEY);
+if (savedUserName === null) {
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+  paintGreetings(savedUserName);
+}
