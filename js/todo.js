@@ -11,14 +11,17 @@ function saveToDos() {
 
 function deleteToDo(e) {
   const li1 = e.target.parentNode;
+  console.log(li1.id);
   li1.remove();
 }
 
 // 화면에 표시, 버튼 이벤트리스너(click)
-function paintToDo(newTodo) {
+function paintToDo(newTodoObj) {
   const li1 = document.createElement("li");
+  li1.id = newTodoObj.id;
+  console.log(li1);
   const span1 = document.createElement("span");
-  span1.innerText = newTodo;
+  span1.innerText = newTodoObj.text;
   const Btn = document.createElement("button");
   Btn.innerText = "❌";
   Btn.addEventListener("click", deleteToDo);
@@ -33,8 +36,12 @@ function handleToDoSubmit(e) {
   e.preventDefault();
   const newTodo = toDoInput.value;
   toDoInput.value = "";
-  toDos.push(newTodo); // 배열에 넣음
-  paintToDo(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  toDos.push(newTodoObj); // 배열에 넣음
+  paintToDo(newTodoObj);
   saveToDos(); // 호출되는 시점에 newTodo는 배열에 있는 상태.
 }
 toDoForm.addEventListener("submit", handleToDoSubmit);
