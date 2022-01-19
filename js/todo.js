@@ -11,15 +11,16 @@ function saveToDos() {
 
 function deleteToDo(e) {
   const li1 = e.target.parentNode;
-  console.log(li1.id);
   li1.remove();
+  toDos = toDos.filter((i) => i.id !== parseInt(li1.id));
+  saveToDos();
 }
 
 // 화면에 표시, 버튼 이벤트리스너(click)
 function paintToDo(newTodoObj) {
   const li1 = document.createElement("li");
   li1.id = newTodoObj.id;
-  console.log(li1);
+
   const span1 = document.createElement("span");
   span1.innerText = newTodoObj.text;
   const Btn = document.createElement("button");
