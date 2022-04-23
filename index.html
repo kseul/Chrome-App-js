@@ -10,10 +10,13 @@
     <script src="js/quotes.js" defer></script>
     <script src="js/background.js" defer></script>
     <script src="js/todo.js" defer></script>
+    <script src="js/weather.js" defer></script>
 
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Momentum App</title>
   </head>
   <body>
+    <!-- login greeting -->
     <form id="login-form" class="hidden">
       <input
         required
@@ -24,11 +27,28 @@
       <button>Log in</button>
     </form>
     <h1 id="greeting" class="hidden"></h1>
+
+    <!-- To Do List -->
     <form id="todo-form">
-      <input type="text" placeholder="Write a To Do and press Enter" required />
+      <input
+        type="text"
+        id="todo-input"
+        placeholder="Write a To Do and press Enter"
+        required
+      />
     </form>
     <ul id="todo-list"></ul>
+
+    <!-- Clock -->
     <h2 id="clock">00:00:00</h2>
+
+    <!-- Weather -->
+    <h3 id="weather">
+      <span></span>
+      <span></span>
+    </h3>
+
+    <!-- Quote -->
     <div id="quote">
       <span id="quote"></span>
       <span id="author"></span>
